@@ -3,172 +3,211 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Profile Page - Nguyễn Trần Quỳnh Như</title>
+<title>Hồ sơ thành viên - Nguyễn Trần Quỳnh Như</title>
+<meta name="color-scheme" content="light dark" />
 
 <style>
 @charset "UTF-8";
 
+/* ----- Tokens ----- */
 :root{
-  --maxw: 750px;
-  --pad: clamp(16px, 2.5vw, 24px);
-  --radius: 12px;
-  --shadow: 0 8px 24px rgba(0,0,0,.15);
+  --maxw: 960px;
+  --gap: clamp(14px, 1.5vw, 20px);
+  --pad: clamp(16px, 2.5vw, 28px);
+  --radius: 14px;
   --brand: #1565c0;
+  --brand-strong: #0d47a1;
+
+  --bg: #f6f8fb;
+  --card: #ffffffcc;
+  --text: #0f172a;
+  --muted: #475569;
+  --ring: 0 0 0 3px color-mix(in oklab, var(--brand) 35%, transparent);
+  --shadow: 0 12px 28px rgba(2,8,23,.12), 0 2px 8px rgba(2,8,23,.06);
+}
+/* Dark mode */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b1220;
+    --card: color-mix(in oklab, #0b1220 30%, #0b1220 0%);
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --shadow: 0 12px 28px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.25);
+  }
 }
 
+/* ----- Page background ----- */
 body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0; min-height: 100dvh; color: var(--text); background: var(--bg);
 }
-
-body::before{
-  content:"";
+.body-bg::before{
+  content: "";
   position: fixed; inset: 0;
-  background-image: url("members/23120069/images/background.jpg"); 
+  background-image: linear-gradient( to bottom, color-mix(in oklab, var(--bg) 70%, transparent), color-mix(in oklab, var(--bg) 85%, transparent) ),
+                    url("images/background.jpg");
   background-size: cover; background-position: center;
-  filter: blur(4px);
-  transform: scale(1.05);
+  filter: blur(4px) saturate(1.05);
+  transform: scale(1.04);
   z-index: -1;
 }
 
-.container{
+/* ----- Layout ----- */
+.wrapper{
   width: min(92vw, var(--maxw));
-  margin: 50px auto;
-  background-color: rgba(255,255,255,.85);
-  padding: var(--pad);
+  margin: clamp(24px, 4vw, 48px) auto;
+  display: grid;
+  gap: var(--gap);
+}
+
+.card{
+  background: var(--card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: var(--pad);
+}
+
+/* ----- Header area (avatar + info) ----- */
+.profile{
+  display: grid;
+  grid-template-columns: 220px 1fr;
   gap: clamp(16px, 3vw, 32px);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  flex-wrap: wrap; 
+  align-items: center;
+}
+@media (max-width: 720px){
+  .profile{ grid-template-columns: 1fr; }
 }
 
 .profile-img{
-  width: min(35vw, 260px);
-  max-width: 100%;
-  height: auto;
-  border-radius: 20px;
-  order: 1;        /* Không cần đảo thứ tự phức tạp */
-  display: block;
+  width: 100%; max-width: 240px; aspect-ratio: 1/1;
+  object-fit: cover; border-radius: 18px;
+  box-shadow: 0 8px 26px rgba(0,0,0,.18);
+  justify-self: center;
 }
 
-/* ----- Khối thông tin ----- */
-.profile-info{
-  flex: 1 1 280px; /* Co giãn đẹp theo chiều ngang */
-  min-width: 260px;
-  text-align: left;
-  font-size: clamp(1rem, 1.1vw + .85rem, 1.15rem);
+.profile-head h1{
+  font-size: clamp(1.4rem, 1.1vw + 1.2rem, 2rem);
+  color: var(--brand); margin: 0 0 .25rem;
+  line-height: 1.2;
+}
+.profile-head p{
+  margin: .15rem 0; color: var(--muted);
 }
 
-h1, h2{
+/* ----- Info list ----- */
+.info{
+  margin-top: clamp(10px, 1.2vw, 16px);
+}
+.info ul{
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: .7rem;
+}
+.info li{
+  display: grid; grid-template-columns: clamp(120px, 24vw, 180px) 1fr;
+  align-items: baseline; gap: .5rem;
+  padding: .35rem .4rem;
+  border-radius: 10px;
+}
+.info li:hover{
+  background: color-mix(in oklab, var(--brand) 6%, transparent);
+}
+.info strong{
+  color: var(--muted); font-weight: 600;
+}
+.info a{
+  color: inherit; text-decoration: none;
+  border-bottom: 1px dashed color-mix(in oklab, var(--brand) 55%, currentColor 50%);
+}
+.info a:hover{
   color: var(--brand);
-  margin: .25em 0 .5em;
 }
 
-.personal-info ul{
-  list-style: none;
-  padding: 0; margin: 0;
-}
-
-.personal-info li{
-  display: flex; gap: .5rem;
-  align-items: baseline;
-  margin-bottom: .6rem;
-}
-
-.personal-info li strong{
-  width: clamp(120px, 20vw, 160px);
-  display: inline-block;
-}
-
-.personal-info li::before{
-  content: "•";
-  color: var(--brand);
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-}
-
-.container2{
-  width: min(92vw, 850px);
-  margin: 40px auto 80px;
-  padding: 0 var(--pad);
-}
-
-.project-end{
-  display: flex; justify-content: center; align-items: center;
-  text-align: center;
-}
-
-p{
-  margin: 4px 0;
+/* ----- Footer/meta ----- */
+.footer{
+  text-align: center; color: var(--muted);
+  display: grid; gap: .2rem;
   font-size: clamp(.95rem, .3vw + .9rem, 1rem);
 }
 
-/* ----- Nút Home cố định ----- */
+/* ----- Floating back button ----- */
 .home-button{
-  position: fixed; right: 20px; bottom: 20px;
-  background-color: var(--brand);
-  color: #fff; text-decoration: none; font-weight: 700;
-  padding: .7em 1.1em;
-  border-radius: 999px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.25);
-  transition: transform .2s ease, background-color .2s ease;
-  font-size: clamp(1rem, .8vw + .9rem, 1.25rem);
-  z-index: 10;
+  position: fixed; right: clamp(14px, 2vw, 22px); bottom: clamp(14px, 2vw, 22px);
+  display: inline-flex; align-items: center; gap: .55em;
+  background: var(--brand); color: #fff;
+  text-decoration: none; font-weight: 700;
+  padding: .75em 1.15em; border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.28);
+  transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+  will-change: transform;
+  font-size: clamp(.95rem, .6vw + .9rem, 1.1rem);
 }
-.home-button:hover{ background-color: #0d47a1; transform: translateY(-2px); }
+.home-button:hover{
+  background: var(--brand-strong); transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(0,0,0,.32);
+}
+.home-button:focus-visible{ outline: none; box-shadow: var(--ring); }
 
-@media (max-width: 640px){
-  .container{
-    justify-content: center;
-    text-align: left;
-  }
-  .profile-info{
-    font-size: clamp(1rem, 1vw + .95rem, 1.1rem);
-  }
+/* ----- Reduced motion ----- */
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; }
 }
 </style>
 </head>
+<body class="body-bg">
+  <main class="wrapper">
+    <section class="card profile" aria-label="Thông tin hồ sơ">
+      <img
+        src="members/23120069/images/23120069.jpg"
+        alt="Ảnh hồ sơ của Nguyễn Trần Quỳnh Như"
+        class="profile-img"
+        width="240"
+        height="240"
+        loading="eager"
+        decoding="async"
+      />
 
-<body>
-    <div class="container">
-        <img src="members/23120069/images/23120069.jpg" alt="QuynhNhu" class="profile-img">
-        <div class="profile-info">
-            <div class="personal-info">
-                <h2>INFORMATION</h2>
-                <ul>
-                    <li><strong>Full name:</strong> Nguyễn Trần Quỳnh Như</li>
-                    <li><strong>Date of bỉth:</strong> 02/03/2005</li>
-                    <li><strong>ID Student:</strong> 23120069</li>
-                    <li><strong>Faculty:</strong> Information Technology</li>
-                    <li><strong>Phone number:</strong> 0333600716</li>
-                    <li><strong>Email:</strong> quynhnhu.aa97@gmail.com</li>
-                </ul>
-            </div>
+      <div class="profile-head">
+        <h1>Nguyễn Trần Quỳnh Như</h1>
+        <p>IT Student</p>
+
+        <div class="info" role="list">
+          <ul>
+            <li>
+              <strong>Student ID</strong>
+              <span>23120069</span>
+            </li>
+            <li>
+              <strong>Date of birth</strong>
+              <time datetime="2005-03-02">02/03/2005</time>
+            </li>
+            <li>
+              <strong>Email</strong>
+              <a href="mailto:quynhnhu.aa97@gmail.com">quynhnhu.aa97@gmail.com</a>
+            </li>
+            <li>
+              <strong>Phone</strong>
+              <a href="tel:+84333600716">0333 600 716</a>
+            </li>
+            <li>
+              <strong>Faculty</strong>
+              <span>Information Technology</span>
+            </li>
+          </ul>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <div class="container2">
-        <div class="project-end">
-            <div class="InformationOfPage">
-                <p>@2025</p>
-                <p>HOMEWORK WEEK 03</p>
-                <p>WEB APPLICATION DEVELOPMENT</p>
-                <p>23120068 - 23120069 - 23120078</p>
-            </div>
-        </div>
-    </div>
+    <section class="card footer" aria-label="Thông tin bài tập">
+      <div>@2025</div>
+      <div>HOMEWORK WEEK 03 · WEB APPLICATION DEVELOPMENT</div>
+      <div>23120068 - 23120069 - 23120078</div>
+    </section>
+  </main>
 
-    
-    <a href="index.html" class="home-button">🏠 GROUP PAGE</a>
+  <a href="index.html" class="home-button" aria-label="Quay về trang nhóm">
+    <span>🏠</span> <span>GROUP PAGE</span>
+  </a>
 </body>
 </html>
-
-
-
