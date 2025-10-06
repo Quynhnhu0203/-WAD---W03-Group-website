@@ -8,7 +8,6 @@
 <style>
 @charset "UTF-8";
 
-/* ----- Reset nhẹ & biến khoảng cách ----- */
 :root{
   --maxw: 750px;
   --pad: clamp(16px, 2.5vw, 24px);
@@ -17,7 +16,6 @@
   --brand: #1565c0;
 }
 
-/* ----- Nền mờ toàn trang ----- */
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -28,14 +26,13 @@ body{
 body::before{
   content:"";
   position: fixed; inset: 0;
-  background-image: url("images/background.jpg"); /* CHÚ Ý: 'images' chữ thường để tránh lỗi server case-sensitive */
+  background-image: url("members/23120069/images/background.jpg"); 
   background-size: cover; background-position: center;
   filter: blur(4px);
   transform: scale(1.05);
   z-index: -1;
 }
 
-/* ----- Card chính ----- */
 .container{
   width: min(92vw, var(--maxw));
   margin: 50px auto;
@@ -48,10 +45,9 @@ body::before{
   gap: clamp(16px, 3vw, 32px);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  flex-wrap: wrap; /* Cho phép xuống dòng khi hẹp */
+  flex-wrap: wrap; 
 }
 
-/* ----- Ảnh profile ----- */
 .profile-img{
   width: min(35vw, 260px);
   max-width: 100%;
@@ -90,7 +86,6 @@ h1, h2{
   display: inline-block;
 }
 
-/* Chấm đầu dòng nhẹ nhàng (tuỳ thích) */
 .personal-info li::before{
   content: "•";
   color: var(--brand);
@@ -99,7 +94,6 @@ h1, h2{
   margin-left: -1em;
 }
 
-/* ----- Footer ----- */
 .container2{
   width: min(92vw, 850px);
   margin: 40px auto 80px;
@@ -130,7 +124,6 @@ p{
 }
 .home-button:hover{ background-color: #0d47a1; transform: translateY(-2px); }
 
-/* ----- Mobile tweak: xếp cột trên màn nhỏ ----- */
 @media (max-width: 640px){
   .container{
     justify-content: center;
