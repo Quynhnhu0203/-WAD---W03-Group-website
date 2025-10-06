@@ -1,133 +1,144 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Profile Page - Nguyễn Trần Quỳnh Như</title>
 
 <style>
 @charset "UTF-8";
-/* CSS Document */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    min-height: 100vh;
-    overflow-x: hidden;
+
+/* ----- Reset nhẹ & biến khoảng cách ----- */
+:root{
+  --maxw: 750px;
+  --pad: clamp(16px, 2.5vw, 24px);
+  --radius: 12px;
+  --shadow: 0 8px 24px rgba(0,0,0,.15);
+  --brand: #1565c0;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("members/23120069/images/background.jpg");
-    background-size: cover;
-    background-position: center;
-    filter: blur(4px);
-    transform: scale(1.05);
-    z-index: -1;
+/* ----- Nền mờ toàn trang ----- */
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.container {
-    max-width: 750px;
-    margin: 50px auto;
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    backdrop-filter: blur(3px);
+body::before{
+  content:"";
+  position: fixed; inset: 0;
+  background-image: url("images/background.jpg"); /* CHÚ Ý: 'images' chữ thường để tránh lỗi server case-sensitive */
+  background-size: cover; background-position: center;
+  filter: blur(4px);
+  transform: scale(1.05);
+  z-index: -1;
 }
 
-.container2 { max-width: 850px; margin: 50px auto; padding: 20px; }
-
-h1 {
-    color: #1565c0;
-    margin: 5px;
+/* ----- Card chính ----- */
+.container{
+  width: min(92vw, var(--maxw));
+  margin: 50px auto;
+  background-color: rgba(255,255,255,.85);
+  padding: var(--pad);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  flex-wrap: wrap; /* Cho phép xuống dòng khi hẹp */
 }
 
-.profile-img {
-    width: 250px;
-    border-radius: 30px;
-    order: 2;
-    margin-left: -500px;
+/* ----- Ảnh profile ----- */
+.profile-img{
+  width: min(35vw, 260px);
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  order: 1;        /* Không cần đảo thứ tự phức tạp */
+  display: block;
 }
 
-.profile-info {
-    flex: 2;
-    text-align: left;
-    margin-left: 70px;
-    font-size: 1.2em;
-    text-align: justify;
-    margin-right: 70px;
+/* ----- Khối thông tin ----- */
+.profile-info{
+  flex: 1 1 280px; /* Co giãn đẹp theo chiều ngang */
+  min-width: 260px;
+  text-align: left;
+  font-size: clamp(1rem, 1.1vw + .85rem, 1.15rem);
 }
 
-.project-end {
-    display: flex;
+h1, h2{
+  color: var(--brand);
+  margin: .25em 0 .5em;
+}
+
+.personal-info ul{
+  list-style: none;
+  padding: 0; margin: 0;
+}
+
+.personal-info li{
+  display: flex; gap: .5rem;
+  align-items: baseline;
+  margin-bottom: .6rem;
+}
+
+.personal-info li strong{
+  width: clamp(120px, 20vw, 160px);
+  display: inline-block;
+}
+
+/* Chấm đầu dòng nhẹ nhàng (tuỳ thích) */
+.personal-info li::before{
+  content: "•";
+  color: var(--brand);
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* ----- Footer ----- */
+.container2{
+  width: min(92vw, 850px);
+  margin: 40px auto 80px;
+  padding: 0 var(--pad);
+}
+
+.project-end{
+  display: flex; justify-content: center; align-items: center;
+  text-align: center;
+}
+
+p{
+  margin: 4px 0;
+  font-size: clamp(.95rem, .3vw + .9rem, 1rem);
+}
+
+/* ----- Nút Home cố định ----- */
+.home-button{
+  position: fixed; right: 20px; bottom: 20px;
+  background-color: var(--brand);
+  color: #fff; text-decoration: none; font-weight: 700;
+  padding: .7em 1.1em;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  transition: transform .2s ease, background-color .2s ease;
+  font-size: clamp(1rem, .8vw + .9rem, 1.25rem);
+  z-index: 10;
+}
+.home-button:hover{ background-color: #0d47a1; transform: translateY(-2px); }
+
+/* ----- Mobile tweak: xếp cột trên màn nhỏ ----- */
+@media (max-width: 640px){
+  .container{
     justify-content: center;
-    align-items: center;
-}
-
-.personal-info h2 {
-    color: #1565c0;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul li {
-    margin-bottom: 10px;
-    display: flex;
-}
-
-ul li strong {
-    margin-bottom: 4px;
-    width: 150px;
-    display: inline-block;
-}
-
-ul li::before {
-    color: #1565c0;
-    content: "•";
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-}
-
-p {
-    text-align: center;
-    margin: 3px 0;
-    font-size: 1em;
-}
-
-.home-button {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #1565c0;
-    color: white;
-    padding: 12px 22px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 2em;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    z-index: 10;
-}
-
-.home-button:hover {
-    background-color: #0d47a1;
-    transform: scale(1.0);
+    text-align: left;
+  }
+  .profile-info{
+    font-size: clamp(1rem, 1vw + .95rem, 1.1rem);
+  }
 }
 </style>
 </head>
