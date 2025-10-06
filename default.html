@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nhóm 7 – Trang thông tin & Image Map</title>
+<style>
+  :root{
+    --brand:#cf2e2e; --text:#222; --bg:#f7f8ff; --card:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:var(--text); background:var(--bg);}
+  .wrap{max-width:1100px; margin:28px auto; padding:0 16px;}
+  header{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px;}
+  h1{margin:0; color:var(--brand); font-size:clamp(22px,3.5vw,34px); letter-spacing:.3px}
+  .tag{padding:6px 10px; border-radius:999px; background:#ffe3e3; color:#8b1d1d; font-weight:700}
+  .panel{background:var(--card); border-radius:20px; padding:20px; box-shadow:0 8px 18px rgba(0,0,0,.06);}
+  .hero{display:grid; grid-template-columns:1fr; gap:16px; align-items:center;}
+  .note{font-size:14px; opacity:.8}
+
+  /* Ảnh nhóm + image map */
+  .photo-box{width:100%; max-width:900px; margin-inline:auto;}
+  .photo-box img{width:100%; height:auto; display:block; border-radius:18px; box-shadow:0 6px 14px rgba(0,0,0,.08)}
+
+  .members{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px;
+  }
+  .card{background:#fff; border:1px solid #eee; border-radius:16px; padding:14px; text-align:center; transition:.15s transform, .15s box-shadow;}
+  .card:hover{transform:translateY(-2px); box-shadow:0 10px 18px rgba(0,0,0,.08);}
+  .card a{color:inherit; text-decoration:none; font-weight:800}
+  .id{display:block; font-size:13px; opacity:.75; margin-top:4px}
+
+  @media (max-width:760px){ .members{grid-template-columns:1fr 1fr} }
+  @media (max-width:520px){ .members{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Trang thông tin</h1>
+      <h1>Nhóm Ba Anh Em Gia Lai</h1>
+      <span class="tag">Image Map Demo</span>
+    </header>
+
+    <section class="panel hero" aria-label="Ảnh nhóm và các vùng bấm">
+      <div class="photo-box">
+        <img
+          src="images/group-photo.png"
+          alt="Ảnh nhóm 3 thành viên"
+          usemap="#groupmap"
+          id="groupPhoto">
+
+        <map name="groupmap">
+          <area shape="circle"
+                coords="319,403,130"
+                href="member1.html"
+                alt="Lê Nguyễn Minh Nhật"
+                aria-label="Trang cá nhân Thành viên 1"
+                data-original-coords="319,403,130">
+
+          <area shape="circle"
+                coords="611,305,130"
+                href="members/23120069/23120069.html"
+                alt="Nguyễn Trần Quỳnh Như"
+                aria-label="Trang cá nhân Thành viên 2"
+                data-original-coords="611,305,130">
+
+          <area shape="circle"
+                coords="913,419,130"
+                href="member3.html"
+                alt="Đặng Mai Quốc"
+                aria-label="Trang cá nhân Thành viên 3"
+                data-original-coords="913,419,130">
+        </map>
+      </div>
+
+      <p class="note">Ghi chú: rê chuột,bấm vào từng khuôn mặt để đi tới trang cá nhân tương ứng.</p>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Thành viên</h2>
+      <div class="members">
+        <div class="card"><a href="member1.html">Lê Nguyễn Minh Nhật</a><span class="id">MSSV: 23120068</span></div>
+        <div class="card"><a href="members/23120069/23120069.html">Nguyễn Trần Quỳnh Như</a><span class="id">MSSV: 23120069</span></div>
+        <div class="card"><a href="member3.html">Đặng Mai Quốc</a><span class="id">MSSV: 23120078</span></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const img = document.getElementById('groupPhoto');
+      const areas = Array.from(document.querySelectorAll('map[name="groupmap"] area'));
+
+      function scaleMap() {
+        if (!img.naturalWidth) return; // chưa load xong
+        const w = img.clientWidth;
+        const h = img.clientHeight;
+        const ratioX = w / img.naturalWidth;
+        const ratioY = h / img.naturalHeight;
+
+        areas.forEach(a => {
+          const orig = a.dataset.originalCoords.split(',').map(Number);
+          // circle: x,y,r  | rect: x1,y1,x2,y2  | poly: x1,y1,x2,y2,...
+          if (a.shape.toLowerCase() === 'circle') {
+            const [x,y,r] = orig;
+            a.coords = [
+              Math.round(x * ratioX),
+              Math.round(y * ratioY),
+              Math.round(r * (ratioX + ratioY) / 2)
+            ].join(',');
+          } else if (a.shape.toLowerCase() === 'rect') {
+            const [x1,y1,x2,y2] = orig;
+            a.coords = [
+              Math.round(x1 * ratioX), Math.round(y1 * ratioY),
+              Math.round(x2 * ratioX), Math.round(y2 * ratioY)
+            ].join(',');
+          } else { // poly
+            a.coords = orig.map((v,i)=> Math.round(v * (i%2? ratioY: ratioX))).join(',');
+          }
+        });
+      }
+
+      if (img.complete) scaleMap();
+      img.addEventListener('load', scaleMap);
+      window.addEventListener('resize', scaleMap);
+    })();
+  </script>
+</body>
+</html>
