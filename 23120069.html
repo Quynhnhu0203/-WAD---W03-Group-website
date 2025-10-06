@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Page - Nguyễn Trần Quỳnh Như</title>
+
+<style>
+@charset "UTF-8";
+/* CSS Document */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("members/23120069/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px);
+    transform: scale(1.05);
+    z-index: -1;
+}
+
+.container {
+    max-width: 750px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(3px);
+}
+
+.container2 { max-width: 850px; margin: 50px auto; padding: 20px; }
+
+h1 {
+    color: #1565c0;
+    margin: 5px;
+}
+
+.profile-img {
+    width: 250px;
+    border-radius: 30px;
+    order: 2;
+    margin-left: -500px;
+}
+
+.profile-info {
+    flex: 2;
+    text-align: left;
+    margin-left: 70px;
+    font-size: 1.2em;
+    text-align: justify;
+    margin-right: 70px;
+}
+
+.project-end {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personal-info h2 {
+    color: #1565c0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+ul li strong {
+    margin-bottom: 4px;
+    width: 150px;
+    display: inline-block;
+}
+
+ul li::before {
+    color: #1565c0;
+    content: "•";
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+p {
+    text-align: center;
+    margin: 3px 0;
+    font-size: 1em;
+}
+
+.home-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #1565c0;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 2em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+.home-button:hover {
+    background-color: #0d47a1;
+    transform: scale(1.0);
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="members/images/23120069.jpg" alt="Name" class="profile-img">
+        <div class="profile-info">
+            <div class="personal-info">
+                <h2>INFORMATION</h2>
+                <ul>
+                    <li><strong>Full name:</strong> Nguyễn Trần Quỳnh Như</li>
+                    <li><strong>Date of bỉth:</strong> 02/03/2005</li>
+                    <li><strong>ID Student:</strong> 23120069</li>
+                    <li><strong>Faculty:</strong> Information Technology</li>
+                    <li><strong>Phone number:</strong> 0333600716</li>
+                    <li><strong>Email:</strong> quynhnhu.aa97@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container2">
+        <div class="project-end">
+            <div class="InformationOfPage">
+                <p>@2025</p>
+                <p>HOMEWORK WEEK 03</p>
+                <p>WEB APPLICATION DEVELOPMENT</p>
+                <p>23120068 - 23120069 - 23120078</p>
+            </div>
+        </div>
+    </div>
+
+    
+    <a href="index.html" class="home-button">🏠 GROUP PAGE</a>
+</body>
+</html>
+
+
+
