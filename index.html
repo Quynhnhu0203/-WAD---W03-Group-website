@@ -3,133 +3,243 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Nhóm 7 – Trang thông tin & Image Map</title>
+<title>Nhóm 7 – BẢNH NHẤT KHOA FIT</title>
 <style>
-  :root{
-    --brand:#cf2e2e; --text:#222; --bg:#f7f8ff; --card:#fff;
-  }
-  *{box-sizing:border-box}
-  body{margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:var(--text); background:var(--bg);}
-  .wrap{max-width:1100px; margin:28px auto; padding:0 16px;}
-  header{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px;}
-  h1{margin:0; color:var(--brand); font-size:clamp(22px,3.5vw,34px); letter-spacing:.3px}
-  .tag{padding:6px 10px; border-radius:999px; background:#ffe3e3; color:#8b1d1d; font-weight:700}
-  .panel{background:var(--card); border-radius:20px; padding:20px; box-shadow:0 8px 18px rgba(0,0,0,.06);}
-  .hero{display:grid; grid-template-columns:1fr; gap:16px; align-items:center;}
-  .note{font-size:14px; opacity:.8}
+:root{
+  --brand:#0a2792;
+  --brand-light:#ffe3e3;
+  --text:#1a1a1a;
+  --muted:#555;
+  --bg:#f8f9fc;
+  --card:#fff;
+}
 
-  /* Ảnh nhóm + image map */
-  .photo-box{width:100%; max-width:900px; margin-inline:auto;}
-  .photo-box img{width:100%; height:auto; display:block; border-radius:18px; box-shadow:0 6px 14px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  zoom: 1.4;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.55;
+}
 
-  .members{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px;
-  }
-  .card{background:#fff; border:1px solid #eee; border-radius:16px; padding:14px; text-align:center; transition:.15s transform, .15s box-shadow;}
-  .card:hover{transform:translateY(-2px); box-shadow:0 10px 18px rgba(0,0,0,.08);}
-  .card a{color:inherit; text-decoration:none; font-weight:800}
-  .id{display:block; font-size:13px; opacity:.75; margin-top:4px}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--bg) 75%, transparent),
+      color-mix(in oklab, var(--bg) 90%, transparent)
+    ),
+    url("images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px) saturate(1.00);
+  transform: scale(1.04);
+  z-index: -1;
+}
 
-  @media (max-width:760px){ .members{grid-template-columns:1fr 1fr} }
-  @media (max-width:520px){ .members{grid-template-columns:1fr} }
+.panel {
+  background: color-mix(in oklab, var(--card) 90%, transparent);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+
+/* ---------- Layout ---------- */
+.wrap{
+  max-width:1100px;
+  margin:50px auto;
+  padding:0 20px 60px;
+}
+
+/* ---------- Header ---------- */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-bottom:28px;
+}
+h1{
+  color:var(--brand);
+  font-size:clamp(26px,3.5vw,38px);
+  font-weight:800;
+  letter-spacing:.3px;
+}
+.tag{
+  background:var(--brand-light);
+  color:var(--brand);
+  font-weight:700;
+  padding:8px 14px;
+  border-radius:999px;
+  box-shadow:0 2px 5px rgba(0,0,0,.05);
+}
+
+/* ---------- Panel (main block) ---------- */
+.panel{
+  background:var(--card);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 24px rgba(0,0,0,.06);
+}
+
+/* ---------- Hero section (image + info) ---------- */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:start;
+}
+@media (max-width:850px){
+  .hero{grid-template-columns:1fr; text-align:center;}
+}
+
+/* ---------- Group photo ---------- */
+.photo-box{
+  display:flex; justify-content:center; align-items:center;
+}
+.photo-box img{
+  width:100%;
+  max-width:500px;
+  border-radius:18px;
+  box-shadow:0 8px 18px rgba(0,0,0,.1);
+  transition:transform .3s ease;
+}
+.photo-box img:hover{transform:scale(1.02);}
+
+/* ---------- Member list ---------- */
+h2{
+  margin:.25rem 0 .75rem;
+  font-size:1.4rem;
+  color:var(--brand);
+  text-transform:uppercase;
+  letter-spacing:.8px;
+}
+.members{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+  margin-bottom:1rem;
+}
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:16px 10px;
+  text-align:center;
+  box-shadow:0 3px 8px rgba(0,0,0,.05);
+  transition:.18s transform, .18s box-shadow;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 18px rgba(0,0,0,.1);
+}
+.card a{
+  color:var(--brand);
+  font-weight:800;
+  text-decoration:none;
+  font-size:1.05rem;
+}
+.id{
+  display:block;
+  font-size:13px;
+  opacity:.7;
+  margin-top:4px;
+}
+
+/* ---------- Note ---------- */
+.note{
+  font-size:.9rem;
+  color:var(--muted);
+  text-align:center;
+  margin-top:6px;
+}
+.note::before{
+  content:"💡 ";
+}
+
+/* ---------- Footer ---------- */
+footer{
+  text-align:center;
+  color:var(--muted);
+  margin-top:40px;
+  font-size:.95rem;
+  opacity:.8;
+}
+footer a{
+  color:var(--brand);
+  text-decoration:none;
+  font-weight:600;
+}
+footer a:hover{text-decoration:underline;}
 </style>
 </head>
+
 <body>
   <div class="wrap">
     <header>
-      <h1>Nhóm Ba Anh Em Gia Lai</h1>
+      <h1>NHÓM BẢNH NHẤT KHOA FIT</h1>
       <span class="tag">WAD · Week 03</span>
     </header>
 
-    <section class="panel hero" aria-label="Ảnh nhóm và các vùng bấm">
+    <section class="panel hero">
       <div class="photo-box">
-        <img
-          src="images/group.jpg"
-          alt="Ảnh nhóm 3 thành viên"
-          usemap="#groupmap"
-          id="groupPhoto">
-
+        <img src="images/group.jpg"
+             alt="Ảnh nhóm 3 thành viên"
+             usemap="#groupmap"
+             id="groupPhoto">
         <map name="groupmap">
-          <area shape="circle"
-                coords="757,1057,100"
-                href="members/23120078/23120078.html"
-                alt="Đặng Mai Quốc"
-                aria-label="Trang cá nhân Thành viên 1"
-                data-original-coords="757,1057,100">
-
-          <area shape="circle"
-                coords="1201,1101,100"
-                href="members/23120069/23120069.html"
-                alt="Nguyễn Trần Quỳnh Như"
-                aria-label="Trang cá nhân Thành viên 2"
-                data-original-coords="1201,1101,100">
-
-          <area shape="circle"
-                coords="1682,988,123"
-                href="members/23120068/23120068.html"
-                alt="Lê Nguyễn Minh Nhật"
-                aria-label="Trang cá nhân Thành viên 3"
-                data-original-coords="1682,988,123">
+          <area shape="circle" coords="692,465,100" href="members/23120078/23120078.html" alt="Đặng Mai Quốc" data-original-coords="692,465,100">
+          <area shape="circle" coords="1134,515,100" href="members/23120069/23120069.html" alt="Nguyễn Trần Quỳnh Như" data-original-coords="1134,515,100">
+          <area shape="circle" coords="1622,403,123" href="members/23120068/23120068.html" alt="Lê Nguyễn Minh Nhật" data-original-coords="1622,403,123">
         </map>
       </div>
 
-      <p class="note">Ghi chú: rê chuột, bấm vào từng khuôn mặt để đi tới trang cá nhân tương ứng.</p>
-    </section>
-
-    <section class="panel" aria-label="Thông tin nhóm">
-      <h2 style="margin-top:0">Thông tin nhóm</h2>
-      <p style="margin:.25rem 0 1rem 0">Tên nhóm: <strong>Ba Anh Em Gia Lai</strong></p>
-      <h3 style="margin:.25rem 0 .5rem 0">Danh sách thành viên</h3>
-      <div class="members">
-        <div class="card"><a href="members/23120078/23120078.html">Đặng Mai Quốc</a><span class="id">MSSV: 23120078</span></div>
-        <div class="card"><a href="members/23120069/23120069.html">Nguyễn Trần Quỳnh Như</a><span class="id">MSSV: 23120069</span></div>
-        <div class="card"><a href="members/23120068/23120068.html">Lê Nguyễn Minh Nhật</a><span class="id">MSSV: 23120068</span></div>
+      <div>
+        <h2>Danh sách thành viên</h2>
+        <div class="members">
+          <div class="card"><a href="members/23120078/23120078.html">Đặng Mai Quốc</a><span class="id">MSSV: 23120078</span></div>
+          <div class="card"><a href="members/23120069/23120069.html">Nguyễn Trần Quỳnh Như</a><span class="id">MSSV: 23120069</span></div>
+          <div class="card"><a href="members/23120068/23120068.html">Lê Nguyễn Minh Nhật</a><span class="id">MSSV: 23120068</span></div>
+        </div>
+        <p class="note">Nháy chuột hoặc bấm vào từng khuôn mặt trong ảnh để đi tới trang cá nhân tương ứng.</p>
       </div>
     </section>
+
+    <footer>
+      <p>@2025</p>
+      <p>HOMEWORK WEEK 03 · WEB APPLICATION DEVELOPMENT</p>
+      <p>23120068 - 23120069 - 23120078</p>
+    </footer>
   </div>
 
   <script>
-    (function () {
-      const img = document.getElementById('groupPhoto');
-      const areas = Array.from(document.querySelectorAll('map[name="groupmap"] area'));
-
-      function scaleMap() {
-        if (!img.naturalWidth) return; // chưa load xong
-        const w = img.clientWidth;
-        const h = img.clientHeight;
-        const ratioX = w / img.naturalWidth;
-        const ratioY = h / img.naturalHeight;
-
-        areas.forEach(a => {
-          const orig = a.dataset.originalCoords.split(',').map(Number);
-          // circle: x,y,r  | rect: x1,y1,x2,y2  | poly: x1,y1,x2,y2,...
-          if (a.shape.toLowerCase() === 'circle') {
-            const [x,y,r] = orig;
-            a.coords = [
-              Math.round(x * ratioX),
-              Math.round(y * ratioY),
-              Math.round(r * (ratioX + ratioY) / 2)
+    (function(){
+      const img=document.getElementById('groupPhoto');
+      const areas=[...document.querySelectorAll('map[name="groupmap"] area')];
+      function scaleMap(){
+        if(!img.naturalWidth) return;
+        const ratioX=img.clientWidth/img.naturalWidth;
+        const ratioY=img.clientHeight/img.naturalHeight;
+        areas.forEach(a=>{
+          const orig=a.dataset.originalCoords.split(',').map(Number);
+          if(a.shape.toLowerCase()==='circle'){
+            const[x,y,r]=orig;
+            a.coords=[
+              Math.round(x*ratioX),
+              Math.round(y*ratioY),
+              Math.round(r*((ratioX+ratioY)/2))
             ].join(',');
-          } else if (a.shape.toLowerCase() === 'rect') {
-            const [x1,y1,x2,y2] = orig;
-            a.coords = [
-              Math.round(x1 * ratioX), Math.round(y1 * ratioY),
-              Math.round(x2 * ratioX), Math.round(y2 * ratioY)
-            ].join(',');
-          } else { // poly
-            a.coords = orig.map((v,i)=> Math.round(v * (i%2? ratioY: ratioX))).join(',');
           }
         });
       }
-
-      if (img.complete) scaleMap();
-      img.addEventListener('load', scaleMap);
-      window.addEventListener('resize', scaleMap);
+      if(img.complete) scaleMap();
+      img.addEventListener('load',scaleMap);
+      window.addEventListener('resize',scaleMap);
     })();
   </script>
 </body>
 </html>
-
-
-
-

@@ -33,7 +33,11 @@
   }
 }
 
-body{ font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; margin:0; min-height:100dvh; color:var(--text); background:var(--bg); }
+body{
+  zoom: 1.4;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0; min-height: 100dvh; color: var(--text); background: var(--bg);
+}
 .body-bg::before{
   content: ""; position: fixed; inset: 0;
   background-image: linear-gradient( to bottom, color-mix(in oklab, var(--bg) 70%, transparent), color-mix(in oklab, var(--bg) 85%, transparent) ),
@@ -58,7 +62,13 @@ body{ font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-ser
 .info a{ color:inherit; text-decoration:none; border-bottom:1px dashed color-mix(in oklab, var(--brand) 55%, currentColor 50%); }
 .info a:hover{ color:var(--brand); }
 
-.footer{ text-align:center; color:var(--muted); display:grid; gap:.2rem; font-size:clamp(.95rem,.3vw + .9rem,1rem); }
+.footer{
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+   text-align:center; color:var(--muted); display:grid; gap:.2rem; font-size:clamp(.95rem,.3vw + .9rem,1rem); }
 .home-button{ position:fixed; right:clamp(14px,2vw,22px); bottom:clamp(14px,2vw,22px); display:inline-flex; align-items:center; gap:.55em; background:var(--brand); color:#fff; text-decoration:none; font-weight:700; padding:.75em 1.15em; border-radius:999px; box-shadow:0 10px 22px rgba(0,0,0,.28); transition:transform .18s ease, background-color .18s ease, box-shadow .18s ease; will-change:transform; font-size:clamp(.95rem,.6vw + .9rem,1.1rem); }
 .home-button:hover{ background:var(--brand-strong); transform:translateY(-2px); box-shadow:0 14px 26px rgba(0,0,0,.32); }
 .home-button:focus-visible{ outline:none; box-shadow:var(--ring); }
@@ -75,9 +85,9 @@ body{ font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-ser
         <div class="info" role="list">
           <ul>
             <li><strong>Student ID</strong><span>23120068</span></li>
-            <li><strong>Date of birth</strong><time datetime="2005-10-15">15/10/2005</time></li>
-            <li><strong>Email</strong><a href="mailto:nhatkimale1023@email.com">nhatkimale1023@email.com</a></li>
-            <li><strong>Phone</strong><a href="tel:+84336700112">0336700112</a></li>
+            <li><strong>Date of birth</strong><time datetime="2005-01-01">15/10/2005</time></li>
+            <li><strong>Email</strong><a href="mailto:example68@email.com">nhatkimale1023@email.com</a></li>
+            <li><strong>Phone</strong><a href="tel:+84000000068">0336700112</a></li>
             <li><strong>Faculty</strong><span>Information Technology</span></li>
           </ul>
         </div>

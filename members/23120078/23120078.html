@@ -38,6 +38,7 @@
 
 /* ----- Page background ----- */
 body{
+  zoom: 1.4;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   margin: 0; min-height: 100dvh; color: var(--text); background: var(--bg);
 }
@@ -126,6 +127,11 @@ body{
 
 /* ----- Footer/meta ----- */
 .footer{
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   text-align: center; color: var(--muted);
   display: grid; gap: .2rem;
   font-size: clamp(.95rem, .3vw + .9rem, 1rem);
@@ -180,7 +186,7 @@ body{
             </li>
             <li>
               <strong>Date of birth</strong>
-              <time datetime="2005-01-31">31/01/2005</time>
+              <time datetime="2005-03-02">31/01/2005</time>
             </li>
             <li>
               <strong>Email</strong>
