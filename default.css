@@ -1,0 +1,421 @@
+
+/* ===== CSS VARIABLES (TOKENS) ===== */
+:root {
+  /* Main page variables */
+  --brand: #0a2792;
+  --brand-light: #ffe3e3;
+  --text: #1a1a1a;
+  --muted: #555;
+  --bg: #f8f9fc;
+  --card: #fff;
+  
+  /* Member page variables */
+  --maxw: 960px;
+  --gap: clamp(14px, 1.5vw, 20px);
+  --pad: clamp(16px, 2.5vw, 28px);
+  --radius: 14px;
+  --brand-member: #1565c0;
+  --brand-strong: #0d47a1;
+  --bg-member: #f6f8fb;
+  --card-member: #ffffffcc;
+  --text-member: #0f172a;
+  --muted-member: #475569;
+  --ring: 0 0 0 3px color-mix(in oklab, var(--brand-member) 35%, transparent);
+  --shadow-member: 0 12px 28px rgba(2,8,23,.12), 0 2px 8px rgba(2,8,23,.06);
+}
+
+/* Dark mode support for member pages */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-member: #0b1220;
+    --card-member: color-mix(in oklab, #0b1220 30%, #0b1220 0%);
+    --text-member: #e2e8f0;
+    --muted-member: #94a3b8;
+    --shadow-member: 0 12px 28px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.25);
+  }
+}
+
+/* ===== GLOBAL RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== MAIN PAGE STYLES (.main-page) ===== */
+.main-page {
+  zoom: 1.1;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+.main-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--bg) 75%, transparent),
+      color-mix(in oklab, var(--bg) 90%, transparent)
+    ),
+    url("images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px) saturate(1.00);
+  transform: scale(1.04);
+  z-index: -1;
+}
+
+.main-page .panel {
+  background: color-mix(in oklab, var(--card) 90%, transparent);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+/* Main page layout */
+.main-page .wrap {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 0 20px 60px;
+}
+
+/* Main page header */
+.main-page header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.main-page h1 {
+  color: var(--brand);
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 800;
+  letter-spacing: .3px;
+}
+
+.main-page .tag {
+  background: var(--brand-light);
+  color: var(--brand);
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.05);
+}
+
+/* Main page panel */
+.main-page .panel {
+  background: var(--card);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.06);
+}
+
+/* Main page hero section */
+.main-page .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 32px;
+}
+
+@media (max-width: 850px) {
+  .main-page .hero {
+    grid-template-columns: 1fr; 
+    text-align: center;
+  }
+}
+
+/* Main page photo */
+.main-page .photo-box {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  max-width: 650px;
+}
+
+.main-page .photo-box img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.1);
+  transition: transform .3s ease;
+}
+
+.main-page .photo-box img:hover {
+  transform: scale(1.02);
+}
+
+/* Main page member list */
+.main-page h2 {
+  margin: .25rem 0 .75rem;
+  font-size: 1.4rem;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+
+.main-page .members {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  justify-items: center;      
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 900px) {
+  .main-page .members {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.main-page .members-section {
+  background: color-mix(in oklab, var(--card) 90%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 14px rgba(0,0,0,.08);
+  width: min(95%, 800px);
+  margin: 0 auto;
+}
+
+.main-page .card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 20px;
+  width: 100%;
+  max-width: 300px;           
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .06);
+  transition: .18s transform, .18s box-shadow;
+}
+
+.main-page .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+}
+
+.main-page .card a {
+  color: var(--brand);
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 1.15rem;
+  white-space: nowrap;         
+}
+
+.main-page .id {
+  display: block;
+  font-size: 14px;
+  opacity: .75;
+  margin-top: 6px;
+}
+
+/* Main page note */
+.main-page .note {
+  font-size: .9rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 6px;
+}
+
+.main-page .note::before {
+  content: "💡 ";
+}
+
+/* Main page footer */
+.main-page footer {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 40px;
+  font-size: .95rem;
+  opacity: .8;
+}
+
+.main-page footer a {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.main-page footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== MEMBER PAGE STYLES (.member-page) ===== */
+.member-page {
+  zoom: 1.1;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0; 
+  min-height: 100dvh; 
+  color: var(--text-member); 
+  background: var(--bg-member);
+}
+
+.member-page.body-bg::before {
+  content: ""; 
+  position: fixed; 
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom, 
+    color-mix(in oklab, var(--bg-member) 70%, transparent), 
+    color-mix(in oklab, var(--bg-member) 85%, transparent)
+  ), url("images/background.jpg");
+  background-size: cover; 
+  background-position: center; 
+  filter: blur(4px) saturate(1.05); 
+  transform: scale(1.04); 
+  z-index: -1;
+}
+
+/* Member page layout */
+.member-page .wrapper {
+  width: min(92vw, var(--maxw));
+  margin: clamp(24px, 4vw, 48px) auto;
+  display: grid;
+  gap: var(--gap);
+}
+
+.member-page .card {
+  background: var(--card-member);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-member);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: var(--pad);
+}
+
+/* Member page profile section */
+.member-page .profile {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .member-page .profile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.member-page .profile-img {
+  width: 100%; 
+  max-width: 240px; 
+  aspect-ratio: 1/1;
+  object-fit: cover; 
+  border-radius: 18px;
+  box-shadow: 0 8px 26px rgba(0,0,0,.18);
+  justify-self: center;
+}
+
+.member-page .profile-head h1 {
+  font-size: clamp(1.4rem, 1.1vw + 1.2rem, 2rem);
+  color: var(--brand-member); 
+  margin: 0 0 .25rem;
+  line-height: 1.2;
+}
+
+.member-page .profile-head p {
+  margin: .15rem 0; 
+  color: var(--muted-member);
+}
+
+/* Member page info list */
+.member-page .info {
+  margin-top: clamp(10px, 1.2vw, 16px);
+}
+
+.member-page .info ul {
+  list-style: none; 
+  padding: 0; 
+  margin: 0;
+  display: grid; 
+  gap: .7rem;
+}
+
+.member-page .info li {
+  display: grid; 
+  grid-template-columns: clamp(120px, 24vw, 180px) 1fr;
+  align-items: baseline; 
+  gap: .5rem;
+  padding: .35rem .4rem;
+  border-radius: 10px;
+}
+
+.member-page .info li:hover {
+  background: color-mix(in oklab, var(--brand-member) 6%, transparent);
+}
+
+.member-page .info strong {
+  color: var(--muted-member); 
+  font-weight: 600;
+}
+
+.member-page .info a {
+  color: inherit; 
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in oklab, var(--brand-member) 55%, currentColor 50%);
+}
+
+.member-page .info a:hover {
+  color: var(--brand-member);
+}
+
+/* Member page footer */
+.member-page .footer {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  text-align: center; 
+  color: var(--muted-member);
+  display: grid; 
+  gap: .2rem;
+  font-size: clamp(.95rem, .3vw + .9rem, 1rem);
+}
+
+/* Member page home button */
+.member-page .home-button {
+  position: fixed; 
+  right: clamp(14px, 2vw, 22px); 
+  bottom: clamp(14px, 2vw, 22px);
+  display: inline-flex; 
+  align-items: center; 
+  gap: .55em;
+  background: var(--brand-member); 
+  color: #fff;
+  text-decoration: none; 
+  font-weight: 700;
+  padding: .75em 1.15em; 
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.28);
+  transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+  will-change: transform;
+  font-size: clamp(.95rem, .6vw + .9rem, 1.1rem);
+}
+
+.member-page .home-button:hover {
+  background: var(--brand-strong); 
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(0,0,0,.32);
+}
+
+.member-page .home-button:focus-visible {
+  outline: none; 
+  box-shadow: var(--ring);
+}
+
+/* ===== ACCESSIBILITY & PERFORMANCE ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

@@ -5,77 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hồ sơ thành viên - Lê Nguyễn Minh Nhật</title>
 <meta name="color-scheme" content="light dark" />
-
-<style>
-@charset "UTF-8";
-
-:root{
-  --maxw: 960px;
-  --gap: clamp(14px, 1.5vw, 20px);
-  --pad: clamp(16px, 2.5vw, 28px);
-  --radius: 14px;
-  --brand: #1565c0;
-  --brand-strong: #0d47a1;
-  --bg: #f6f8fb;
-  --card: #ffffffcc;
-  --text: #0f172a;
-  --muted: #475569;
-  --ring: 0 0 0 3px color-mix(in oklab, var(--brand) 35%, transparent);
-  --shadow: 0 12px 28px rgba(2,8,23,.12), 0 2px 8px rgba(2,8,23,.06);
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg: #0b1220;
-    --card: color-mix(in oklab, #0b1220 30%, #0b1220 0%);
-    --text: #e2e8f0;
-    --muted: #94a3b8;
-    --shadow: 0 12px 28px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.25);
-  }
-}
-
-body{
-  zoom: 1.1;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  margin: 0; min-height: 100dvh; color: var(--text); background: var(--bg);
-}
-.body-bg::before{
-  content: ""; position: fixed; inset: 0;
-  background-image: linear-gradient( to bottom, color-mix(in oklab, var(--bg) 70%, transparent), color-mix(in oklab, var(--bg) 85%, transparent) ),
-                    url("../23120068/images/background.jpg");
-  background-size: cover; background-position: center; filter: blur(4px) saturate(1.05); transform: scale(1.04); z-index: -1;
-}
-
-.wrapper{ width:min(92vw, var(--maxw)); margin: clamp(24px,4vw,48px) auto; display:grid; gap:var(--gap); }
-.card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding:var(--pad); }
-
-.profile{ display:grid; grid-template-columns:220px 1fr; gap:clamp(16px,3vw,32px); align-items:center; }
-@media (max-width:720px){ .profile{ grid-template-columns:1fr; } }
-.profile-img{ width:100%; max-width:240px; aspect-ratio:1/1; object-fit:cover; border-radius:18px; box-shadow:0 8px 26px rgba(0,0,0,.18); justify-self:center; }
-.profile-head h1{ font-size:clamp(1.4rem,1.1vw + 1.2rem,2rem); color:var(--brand); margin:0 0 .25rem; line-height:1.2; }
-.profile-head p{ margin:.15rem 0; color:var(--muted); }
-
-.info{ margin-top:clamp(10px,1.2vw,16px); }
-.info ul{ list-style:none; padding:0; margin:0; display:grid; gap:.7rem; }
-.info li{ display:grid; grid-template-columns:clamp(120px,24vw,180px) 1fr; align-items:baseline; gap:.5rem; padding:.35rem .4rem; border-radius:10px; }
-.info li:hover{ background: color-mix(in oklab, var(--brand) 6%, transparent); }
-.info strong{ color:var(--muted); font-weight:600; }
-.info a{ color:inherit; text-decoration:none; border-bottom:1px dashed color-mix(in oklab, var(--brand) 55%, currentColor 50%); }
-.info a:hover{ color:var(--brand); }
-
-.footer{
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-   text-align:center; color:var(--muted); display:grid; gap:.2rem; font-size:clamp(.95rem,.3vw + .9rem,1rem); }
-.home-button{ position:fixed; right:clamp(14px,2vw,22px); bottom:clamp(14px,2vw,22px); display:inline-flex; align-items:center; gap:.55em; background:var(--brand); color:#fff; text-decoration:none; font-weight:700; padding:.75em 1.15em; border-radius:999px; box-shadow:0 10px 22px rgba(0,0,0,.28); transition:transform .18s ease, background-color .18s ease, box-shadow .18s ease; will-change:transform; font-size:clamp(.95rem,.6vw + .9rem,1.1rem); }
-.home-button:hover{ background:var(--brand-strong); transform:translateY(-2px); box-shadow:0 14px 26px rgba(0,0,0,.32); }
-.home-button:focus-visible{ outline:none; box-shadow:var(--ring); }
-@media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
-</style>
+<link rel="stylesheet" href="../../default.css">
 </head>
-<body class="body-bg">
+<body class="member-page body-bg">
   <main class="wrapper">
     <section class="card profile" aria-label="Thông tin hồ sơ">
       <img src="images/23120068.jpg" alt="Ảnh hồ sơ của Lê Nguyễn Minh Nhật" class="profile-img" width="240" height="240" loading="eager" decoding="async" />
