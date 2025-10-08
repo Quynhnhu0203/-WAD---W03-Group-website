@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MOOTRIO TEAM</title>
+<link rel="stylesheet" href="default.css">
+</head>
+
+<body class="main-page">
+  <div class="wrap">
+    <header>
+      <h1>MOOTRIO TEAM</h1>
+      <span class="tag">WAD · Week 03</span>
+    </header>
+
+    <section class="panel hero">
+      <div class="photo-box">
+        <img src="images/group.jpg"
+             alt="Ảnh nhóm 3 thành viên"
+             usemap="#groupmap"
+             id="groupPhoto">
+        <map name="groupmap">
+          <area shape="circle" coords="692,465,100" href="members/23120078/23120078.html" alt="Đặng Mai Quốc" data-original-coords="692,465,100">
+          <area shape="circle" coords="1134,515,100" href="members/23120069/23120069.html" alt="Nguyễn Trần Quỳnh Như" data-original-coords="1134,515,100">
+          <area shape="circle" coords="1622,403,123" href="members/23120068/23120068.html" alt="Lê Nguyễn Minh Nhật" data-original-coords="1622,403,123">
+        </map>
+      </div>
+
+      <div>
+        <h2>GROUP MEMBERS</h2>
+        <div class="members">
+          <div class="card"><a href="members/23120078/23120078.html">Đặng Mai Quốc</a><span class="id">Student ID: 23120078</span></div>
+          <div class="card"><a href="members/23120069/23120069.html">Nguyễn Trần Quỳnh Như</a><span class="id">Student ID: 23120069</span></div>
+          <div class="card"><a href="members/23120068/23120068.html">Lê Nguyễn Minh Nhật</a><span class="id">Student ID: 23120068</span></div>
+        </div>
+        <p class="note">Click or tap each face in the photo to open the corresponding profile page.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>@2025</p>
+      <p>HOMEWORK WEEK 03 · WEB APPLICATION DEVELOPMENT</p>
+      <p>23120068 - 23120069 - 23120078</p>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const img=document.getElementById('groupPhoto');
+      const areas=[...document.querySelectorAll('map[name="groupmap"] area')];
+      function scaleMap(){
+        if(!img.naturalWidth) return;
+        const ratioX=img.clientWidth/img.naturalWidth;
+        const ratioY=img.clientHeight/img.naturalHeight;
+        areas.forEach(a=>{
+          const orig=a.dataset.originalCoords.split(',').map(Number);
+          if(a.shape.toLowerCase()==='circle'){
+            const[x,y,r]=orig;
+            a.coords=[
+              Math.round(x*ratioX),
+              Math.round(y*ratioY),
+              Math.round(r*((ratioX+ratioY)/2))
+            ].join(',');
+          }
+        });
+      }
+      if(img.complete) scaleMap();
+      img.addEventListener('load',scaleMap);
+      window.addEventListener('resize',scaleMap);
+    })();
+  </script>
+</body>
+</html>
+
+
